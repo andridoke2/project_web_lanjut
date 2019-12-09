@@ -1,24 +1,31 @@
 <h1>Halaman Daerah</h1>
 
-<!-- Cari -->
-<div class="row float-right mb-2">
+<div class="row">
+
+  <!-- Tambah -->
   <div class="col-md">
-    <form action="<?= base_url('anggota'); ?>" method="post">
+    <a href="<?= base_url('daerah/tambah'); ?>" class="btn btn-primary">Tambah Daerah</a>
+  </div>
+
+  <!-- Cari -->
+  <div class="col-md float-right mb-2">
+    <form action="<?= base_url('daerah'); ?>" method="post">
       <div class="input-group">
         <input type="text" class="form-control" placeholder="Cari data daerah..." name="keyword_daerah" autocomplete="off">
         <div class="input-group-append">
-          <button class="btn btn-outline-primary" type="submit" name="submit_daerah">
+          <button class="btn btn-outline-primary" type="submit" name="submit_daerah">Cari
             <i class="fas fa-search fa-sm"></i>
           </button>
         </div>
         <div class="input-group-append">
-          <button type="button" class="btn btn-info"><a href="<?= base_url('daerah/unsetDataCariDaerah') ?>" class="badge badge-info"><i class="fas fa-redo"></i></a></button>
+          <a class="btn btn-info" href="<?= base_url('daerah/unsetDataCariDaerah') ?>" class="badge badge-info">Reset<i class="fas fa-redo"></i></a>
         </div>
       </div>
     </form>
   </div>
+  <!-- akhir Cari -->
+
 </div>
-<!-- akhir Cari -->
 
 <table class="table table-hover">
   <thead>
@@ -48,7 +55,7 @@
         <td><?= $lokasi['longitude']; ?></td>
         <td><?= $lokasi['status']; ?></td>
         <td>
-          <a href="<?= base_url('daerah/detail/') ?><?= $lokasi['nid']; ?>" class="badge badge-pill badge-info" target="_blank">Detail & Lokasi <i class="fas fa-info"></i></a>
+          <a href="<?= base_url('daerah/detail/') ?><?= $lokasi['nid']; ?>" class="badge badge-pill badge-info">Detail & Lokasi <i class="fas fa-info"></i></a>
         </td>
       </tr>
     <?php endforeach; ?>

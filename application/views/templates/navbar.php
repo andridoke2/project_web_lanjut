@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
   <link href="<?= base_url('assets/css/style.css'); ?>" rel="stylesheet">
   <link href="<?= base_url('assets/css/datatable-bootstrap.css'); ?>" rel="stylesheet">
+  <link rel="stylesheet" href="<?= base_url('assets/css/home/map-home.css'); ?>">
   <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 </head>
 
@@ -23,10 +24,10 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-          <a class="nav-item nav-link active" href="<?= base_url('home'); ?>">Home <span class="sr-only">(current)</span></a>
-          <a class="nav-item nav-link" href="<?= base_url('daerah'); ?>">Daerah</a>
-          <a class="nav-item nav-link" href="<?= base_url('peta'); ?>">Peta</a>
-          <a class="nav-item nav-link" href="<?= base_url('about'); ?>">About</a>
+          <a class="nav-item nav-link menu active" href="<?= base_url('home'); ?>">Home <span class="sr-only">(current)</span></a>
+          <a class="nav-item nav-link menu" href="<?= base_url('daerah'); ?>">Daerah</a>
+          <a class="nav-item nav-link menu" href="<?= base_url('peta'); ?>">Peta</a>
+          <a class="nav-item nav-link menu" href="<?= base_url('about'); ?>">About</a>
         </div>
       </div>
     </div>

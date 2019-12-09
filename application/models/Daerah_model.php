@@ -23,4 +23,14 @@ class Daerah_model extends CI_Model
     $data = $this->db->get_where('daerah', ['nid' => $id])->result_array();
     return json_encode($data);
   }
+
+  public function getMenu()
+  {
+    return $this->db->get('menu_detail')->result_array();
+  }
+
+  public function getSubMenu()
+  {
+    return $this->db->get('sub_menu_detail')->result_array();
+  }
 }

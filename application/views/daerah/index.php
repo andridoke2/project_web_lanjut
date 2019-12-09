@@ -1,4 +1,6 @@
-<h1>Halaman Daerah</h1>
+<h1>Daftar <?= $title; ?></h1>
+
+<div class="flash-data-daerah" data-flashdata="<?= $this->session->flashdata('flash'); ?>"></div>
 
 <div class="row">
 
@@ -55,7 +57,7 @@
         <td><?= $lokasi['longitude']; ?></td>
         <td><?= $lokasi['status']; ?></td>
         <td>
-          <a href="<?= base_url('daerah/detail/') ?><?= $lokasi['nid']; ?>" class="badge badge-pill badge-info">Detail & Lokasi <i class="fas fa-info"></i></a>
+          <a href="<?= base_url('daerah/detail/') ?><?= $lokasi['nid']; ?>" class="badge badge-pill badge-info detail-daerah" data-id="<?= $lokasi['nid']; ?>">Detail & Lokasi <i class="fas fa-info"></i></a>
         </td>
       </tr>
     <?php endforeach; ?>

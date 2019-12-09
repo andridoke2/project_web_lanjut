@@ -1,6 +1,6 @@
 <?php
 
-$obj = json_decode($result);
+$data = json_decode($result);
 
 $nid = "";
 $parent_nid = "";
@@ -11,7 +11,7 @@ $latitude = "";
 $longitude = "";
 $status = "";
 
-foreach ($obj as $item) {
+foreach ($data as $item) {
   $nid .= $item->nid;
   $parent_nid .= $item->parent_nid;
   $name .= $item->name;
@@ -22,14 +22,10 @@ foreach ($obj as $item) {
   $status .= $item->status;
 }
 
-// $title = "Detail dan Lokasi : " . $titles;
 ?>
 
-<!-- Library -->
+<!-- Library Google Map -->
 <script src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyAbXF62gVyhJOVkRiTHcVp_BkjPYDQfH5w"></script>
-
-<!-- API -->
-<!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC5npUOW8ZFhnAr8zjKkahqtLqJlhTwHIU&callback=initMap" async defer></script> -->
 
 <script>
   function initialize() {
@@ -37,7 +33,7 @@ foreach ($obj as $item) {
     let lng = "<?= $longitude; ?>";
     var myLatlng = new google.maps.LatLng(lat, lng);
     var mapOptions = {
-      zoom: 5,
+      zoom: 7,
       center: myLatlng
     };
 
@@ -169,10 +165,10 @@ foreach ($obj as $item) {
           </tr>
           <tr>
             <td>
-              <a href="" class="btn btn-success">Ubah</a>
+              <a href="<?= base_url('daerah/ubah/') . $nid; ?>" class="btn btn-success">Ubah</a>
             </td>
             <td>
-              <a href="" class="btn btn-danger">Hapus</a>
+              <a href="<?= base_url('daerah/hapus/') . $nid; ?>" class="btn btn-danger tombol-hapus">Hapus</a>
             </td>
             <td>
               <a href="<?= base_url('daerah'); ?>" class="btn btn-secondary">Kembali</a>

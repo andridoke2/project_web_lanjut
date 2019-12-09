@@ -26,7 +26,6 @@
         <div class="navbar-nav">
           <a class="nav-item nav-link menu active" href="<?= base_url('home'); ?>">Home <span class="sr-only">(current)</span></a>
           <a class="nav-item nav-link menu" href="<?= base_url('daerah'); ?>">Daerah</a>
-          <a class="nav-item nav-link menu" href="<?= base_url('peta'); ?>">Peta</a>
           <a class="nav-item nav-link menu" href="<?= base_url('about'); ?>">About</a>
         </div>
       </div>

@@ -111,7 +111,7 @@ class Daerah extends CI_Controller
     } else {
       $this->Daerah_model->ubah();
       $this->session->set_flashdata('flash', 'Diubah');
-      redirect('daerah');
+      redirect('daerah/detail/' . $nid);
     }
   }
 

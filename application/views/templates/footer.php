@@ -32,6 +32,9 @@
 <!-- chart.js -->
 <!-- <script src="<?= base_url('assets/js/chartjs/package/dist/Chart.js'); ?>"></script> -->
 
+<!-- fontawesome -->
+<script src="<?= base_url('assets/fontawesome/js/all.min.js'); ?>"></script>
+
 </body>
 
 </html>

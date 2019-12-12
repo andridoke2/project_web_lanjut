@@ -51,7 +51,7 @@
             <small class="form-text text-danger"><?= form_error('status'); ?></small>
           </div>
           <button type="submit" class="btn btn-primary">Ubah</button>
-          <a href="<?= base_url('daerah'); ?>" class="btn btn-secondary float-right">Kembali</a>
+          <a href="<?= base_url('daerah/detail/') . $daerah['nid'] ?>" class="btn btn-secondary float-right">Kembali</a>
         </form>
 
       </div>

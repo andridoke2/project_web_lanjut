@@ -8,7 +8,7 @@
           </div>
           <div class="col-md-11">
             <h1 class="judul-head">Sistem Informasi Pemetaan Pemanfaatan Lahan</h1>
-            <p><i class="fa fa-map-marker fa-fw"></i> Sistem Informasi yang memuat data pemanfaatan lahan Kalimantan Barat berdasarkan data BPS Provinsi Kalimantan Barat.</p>
+            <p>Sistem Informasi yang memuat data pemanfaatan lahan Kalimantan Barat berdasarkan data BPS Provinsi Kalimantan Barat.</p>
           </div>
         </div>
         <hr class="hr1 margin-b-10" />

@@ -6,7 +6,7 @@
 
   <!-- Tambah -->
   <div class="col-md">
-    <a href="<?= base_url('daerah/tambah'); ?>" class="btn btn-primary">Tambah Daerah</a>
+    <a href="<?= base_url('daerah/tambah'); ?>" class="btn btn-primary"><i class="fas fa-plus"></i> Tambah Daerah</a>
   </div>
 
   <!-- Cari -->
@@ -16,11 +16,11 @@
         <input type="text" class="form-control" placeholder="Cari data daerah..." name="keyword_daerah" autocomplete="off">
         <div class="input-group-append">
           <button class="btn btn-outline-primary" type="submit" name="submit_daerah">Cari
-            <i class="fas fa-search fa-sm"></i>
+            <i class="fas fa-search"></i>
           </button>
         </div>
         <div class="input-group-append">
-          <a class="btn btn-info" href="<?= base_url('daerah/unsetDataCariDaerah') ?>" class="badge badge-info">Reset<i class="fas fa-redo"></i></a>
+          <a class="btn btn-info" href="<?= base_url('daerah/unsetDataCariDaerah') ?>" class="badge badge-info">Reset<i class="fas fa-redo fa-sm"></i></a>
         </div>
       </div>
     </form>

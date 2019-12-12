@@ -2,9 +2,11 @@
 
 <div class="row">
 
-  <!-- Tambah -->
   <div class="col-md">
-    <a href="<?= base_url('pertanian_pertambangan/hortikultural/tambah'); ?>" class="btn btn-primary">Tambah Hortikultural</a>
+    <!-- Kembali -->
+    <a href="<?= base_url('daerah/'); ?>" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> Kembali</a>
+    <!-- Tambah -->
+    <a href="<?= base_url('pertanian_pertambangan/hortikultural/tambah'); ?>" class="btn btn-primary"><i class="fas fa-plus"></i> Tambah Hortikultural</a>
   </div>
 
   <!-- Cari -->
@@ -14,11 +16,11 @@
         <input type="text" class="form-control" placeholder="Cari data hortikultural..." name="keyword_hortikultural" autocomplete="off">
         <div class="input-group-append">
           <button class="btn btn-outline-primary" type="submit" name="submit_hortikultural">Cari
-            <i class="fas fa-search fa-sm"></i>
+            <i class="fas fa-search"></i>
           </button>
         </div>
         <div class="input-group-append">
-          <a class="btn btn-info" href="<?= base_url('pertanian_pertambangan/unsetDataCariHortikultural') ?>" class="badge badge-info">Reset<i class="fas fa-redo"></i></a>
+          <a class="btn btn-info" href="<?= base_url('pertanian_pertambangan/unsetDataCariHortikultural') ?>" class="badge badge-info">Reset <i class="fas fa-redo fa-sm"></i></a>
         </div>
       </div>
     </form>
@@ -41,7 +43,7 @@
         <th scope="row">
           <h2 class="text-danger font-weight-bold">1</h2>
         </th>
-        <td><a href="<?= base_url('detail_daerah/pertanian_pertambangan/hortikultural/detail/') . $h['id']; ?>" class="btn btn-secondary btn-lg btn-block"><?= $h['judul']; ?></a></td>
+        <td><a href="<?= base_url('detail_daerah/pertanian_pertambangan/hortikultural/detail/') . $h['id']; ?>" class="btn btn-secondary btn-lg btn-block"><?= $h['judul']; ?><i class="fas fa-eye float-right"></i></a></td>
         <td>
           <h2 class="text-success font-weight-bold"><?= $h['terakhir_update']; ?></h2>
         </td>

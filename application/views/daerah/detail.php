@@ -165,13 +165,13 @@ foreach ($data as $item) {
           </tr>
           <tr>
             <td>
-              <a href="<?= base_url('daerah/ubah/') . $nid; ?>" class="btn btn-success">Ubah</a>
+              <a href="<?= base_url('daerah/ubah/') . $nid; ?>" class="btn btn-success">Ubah <i class="fas fa-check"></i></a>
             </td>
             <td>
-              <a href="<?= base_url('daerah/hapus/') . $nid; ?>" class="btn btn-danger tombol-hapus">Hapus</a>
+              <a href="<?= base_url('daerah/hapus/') . $nid; ?>" class="btn btn-danger tombol-hapus">Hapus <i class="fas fa-trash"></i></a>
             </td>
             <td>
-              <a href="<?= base_url('daerah'); ?>" class="btn btn-secondary">Kembali</a>
+              <a href="<?= base_url('daerah'); ?>" class="btn btn-secondary">Kembali <i class="fas fa-arrow-left"></i></a>
             </td>
           </tr>
         </table>

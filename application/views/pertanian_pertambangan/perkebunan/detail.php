@@ -1,30 +1,36 @@
 <div class="mt-3 mb-3">
   <a href="<?= base_url('detail_daerah/pertanian_pertambangan/perkebunan'); ?>" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> Kembali</a>
-  <a href="" class="btn btn-primary float-right">Versi Tabel <i class="fas fa-table"></i></a>
+  <a href="<?= base_url('detail_daerah/pertanian_pertambangan/perkebunan/table/') . $detail[0]['id']; ?>" class="btn btn-primary float-right">Versi Tabel <i class="fas fa-table"></i></a>
 </div>
 
 <h2 class="font-weight-bold text-center"><?= $title; ?></h2>
 
+
+<h2 class="text-center text-danger"><?= $detail[0]['kab_kota']; ?></h2>
 <div class="row justify-content-center">
-  <div class="form-group">
-    <select name="barType" id="barType" class="form-control">
-      <option value="bar">Grafik Batang</option>
-      <option value="pie">Grafik Bola</option>
-    </select>
-  </div>
   <div class="col-md-10">
-    <h2 class="text-center text-danger"><?= $detail[0]['kab_kota']; ?></h2>
+    <canvas id="canvas"></canvas>
   </div>
-  <canvas id="myChart" width="50" height="20" class="mb-3"></canvas>
+  <div class="col-md-2">
+    <div class="btn-group-vertical">
+      <button id="line" class="btn btn-info">Garis</button>
+      <button id="bar" class="btn btn-info">Batang</button>
+      <button id="horizontalBar" class="btn btn-info">Batang Horizontal</button>
+      <button id="pie" class="btn btn-info">Bola</button>
+      <button id="doughnut" class="btn btn-info">Donat</button>
+      <button id="radar" class="btn btn-info">Radar</button>
+      <button id="polarArea" class="btn btn-info">Polar Area</button>
+      <button id="bubble" class="btn btn-info">Bubble</button>
+      <button id="scatter" class="btn btn-info">Scatter</button>
+    </div>
+  </div>
 </div>
 
 <!-- chart.js -->
 <script src="<?= base_url('assets/js/chartjs/package/dist/Chart.js'); ?>"></script>
 
 <script>
-  function karet() {
-    var ctx = document.getElementById('myChart').getContext('2d');
-
+  function chart() {
     let labelsKaret1 = `<?= $detail[0]['nama_tanaman']; ?> <?= $detail[0]['tahun']; ?>`;
     let labelsKaret2 = `<?= $detail[1]['nama_tanaman']; ?> <?= $detail[1]['tahun']; ?>`;
     let labelsKaret3 = `<?= $detail[2]['nama_tanaman']; ?> <?= $detail[2]['tahun']; ?>`;
@@ -55,12 +61,8 @@
     let dataAnekahTanaman3 = `<?= $detail[10]['jumlah']; ?>`;
     let dataAnekahTanaman4 = `<?= $detail[11]['jumlah']; ?>`;
 
-    // Global Options
-    Chart.defaults.global.defaultFontSize = 15;
-    Chart.defaults.global.defaultFontColor = '#777';
-
-    var myChart = new Chart(ctx, {
-      type: 'pie',
+    var config = {
+      type: 'line',
       data: {
         labels: [labelsKaret1, kelapaSawit1, anekahTanaman1, labelsKaret2, kelapaSawit2, anekahTanaman2, labelsKaret3, kelapaSawit3, anekahTanaman3, labelsKaret4, kelapaSawit4, anekahTanaman4],
         datasets: [{
@@ -94,19 +96,62 @@
         }]
       },
       options: {
-        scales: {
-          yAxes: [{
-            ticks: {
-              beginAtZero: true
-            }
-          }]
-        },
-        legend: {
-          position: 'top'
-        }
+        responsive: true,
       }
+    };
+
+    var myChart;
+
+    $("#line").click(function() {
+      change('line');
     });
+
+    $('#pie').on('click', function() {
+      change('pie');
+    });
+
+    $("#bar").click(function() {
+      change('bar');
+    });
+
+    $('#horizontalBar').click(function() {
+      change('horizontalBar');
+    });
+
+    $('#doughnut').click(function() {
+      change('doughnut');
+    });
+
+    $('#radar').click(function() {
+      change('radar');
+    });
+
+    $('#polarArea').click(function() {
+      change('polarArea');
+    });
+
+    $('#bubble').click(function() {
+      change('bubble');
+    });
+
+    $('#scatter').click(function() {
+      change('scatter');
+    });
+
+    function change(newType) {
+      var ctx = document.getElementById("canvas").getContext("2d");
+
+      // Remove the old chart and all its event handles
+      if (myChart) {
+        myChart.destroy();
+      }
+
+      // Chart.js modifies the object you pass in. Pass a copy of the object so we can use the original object later
+      var temp = jQuery.extend(true, {}, config);
+      temp.type = newType;
+      myChart = new Chart(ctx, temp);
+    };
   }
 
-  karet();
+  chart();
 </script>

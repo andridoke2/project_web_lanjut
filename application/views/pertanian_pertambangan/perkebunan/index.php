@@ -6,7 +6,7 @@
     <!-- Kembali -->
     <a href="<?= base_url('daerah/'); ?>" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> Kembali</a>
     <!-- Tambah -->
-    <a href="<?= base_url('pertanian_pertambangan/perkebunan/tambah'); ?>" class="btn btn-primary"><i class="fas fa-plus"></i> Tambah Hortikultural</a>
+    <a href="<?= base_url('pertanian_pertambangan/perkebunan/tambah'); ?>" class="btn btn-primary"><i class="fas fa-plus"></i> Tambah Perkebunan</a>
   </div>
 
   <!-- Cari -->

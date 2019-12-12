@@ -31,4 +31,16 @@ class Perkebunan extends CI_Controller
     $this->load->view('pertanian_pertambangan/perkebunan/detail', $data);
     $this->load->view('templates/footer');
   }
+
+  public function table($id)
+  {
+    $data['perkebunan'] = $this->perkebunan->getPerkebunanById($id);
+    $data['title'] = $data['perkebunan']['judul'];
+    $data['detail'] = $this->perkebunan->getLuasTanamanPerkebunanBesarById($id);
+
+    $this->load->view('templates/navbar', $data);
+    $this->load->view('templates/header');
+    $this->load->view('pertanian_pertambangan/perkebunan/table', $data);
+    $this->load->view('templates/footer');
+  }
 }

@@ -28,4 +28,13 @@ class Perkebunan_model extends CI_Model
     }
     return $this->db->get('luas_tanaman_perkebunan_besar', $limit, $start)->result_array();
   }
+
+  public function tambahPerkebunan($judul, $akhirUpdate)
+  {
+    $data = [
+      'judul' => $judul,
+      'terakhir_update' => $akhirUpdate
+    ];
+    $this->db->insert('perkebunan', $data);
+  }
 }

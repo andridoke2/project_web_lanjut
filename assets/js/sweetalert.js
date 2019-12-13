@@ -1,11 +1,21 @@
 // flash data menggunakan sweet alert
 const flashDataDaerah = $(".flash-data-daerah").data("flashdata");
+const flashDataPerkebunan = $(".flash-data-perkebunan").data("flashdata");
 
 if (flashDataDaerah) {
 	Swal.fire({
 		type: "success",
 		title: "Data daerah berhasil",
 		text: flashDataDaerah,
+		showConfirmButton: true
+	});
+}
+
+if (flashDataPerkebunan) {
+	Swal.fire({
+		type: "success",
+		title: "Data perkebunan berhasil",
+		text: flashDataPerkebunan,
 		showConfirmButton: true
 	});
 }

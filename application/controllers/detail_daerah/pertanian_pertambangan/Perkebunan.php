@@ -6,6 +6,7 @@ class Perkebunan extends CI_Controller
   public function __construct()
   {
     parent::__construct();
+    $this->load->library('form_validation');
     $this->load->model('detail_daerah/pertanian_pertambangan/Perkebunan_model', 'perkebunan');
   }
 
@@ -18,6 +19,28 @@ class Perkebunan extends CI_Controller
     $this->load->view('templates/header');
     $this->load->view('pertanian_pertambangan/perkebunan/index', $data);
     $this->load->view('templates/footer');
+  }
+
+  public function tambah()
+  {
+    $data['title'] = 'Tambah data perkebunan';
+
+    $this->form_validation->set_rules('judul', 'Judul', 'required');
+    $this->form_validation->set_rules('akhir_update', 'Terkahir Update', 'required');
+
+    if ($this->form_validation->run() == false) {
+      $this->load->view('templates/navbar', $data);
+      $this->load->view('templates/header');
+      $this->load->view('pertanian_pertambangan/perkebunan/tambah');
+      $this->load->view('templates/footer');
+    } else {
+      $judul = $this->input->post('judul', true);
+      $akhirUpdate = $this->input->post('akhir_update', true);
+
+      $this->perkebunan->tambahPerkebunan($judul, $akhirUpdate);
+      $this->session->set_flashdata('flash', 'Ditambahkan');
+      redirect('detail_daerah/pertanian_pertambangan/perkebunan/');
+    }
   }
 
   public function detail($id)

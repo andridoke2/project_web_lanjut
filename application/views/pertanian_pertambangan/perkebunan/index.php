@@ -38,15 +38,13 @@
     </tr>
   </thead>
   <tbody>
-    <?php foreach ($perkebunan as $p) : ?>
+    <?php
+    $i = 0;
+    foreach ($perkebunan as $p) : ?>
       <tr>
-        <th scope="row">
-          <h2 class="text-danger font-weight-bold">1</h2>
-        </th>
-        <td><a href="<?= base_url('detail_daerah/pertanian_pertambangan/perkebunan/detail/') . $p['id']; ?>" class="btn btn-secondary btn-lg btn-block"><?= $p['judul']; ?><i class="fas fa-eye float-right"></i></a></td>
-        <td>
-          <h2 class="text-success font-weight-bold"><?= $p['terakhir_update']; ?></h2>
-        </td>
+        <th scope="row"><?= ++$i; ?></th>
+        <td><a href="<?= base_url('detail_daerah/pertanian_pertambangan/perkebunan/detail/') . $p['id']; ?>"><?= $p['judul']; ?></a></td>
+        <td><?= $p['terakhir_update']; ?></td>
       </tr>
     <?php endforeach; ?>
   </tbody>

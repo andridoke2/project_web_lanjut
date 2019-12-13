@@ -17,4 +17,15 @@ class Perkebunan_model extends CI_Model
   {
     return $this->db->get_where('luas_tanaman_perkebunan_besar', ['id_hortikultural' => $id])->result_array();
   }
+
+  public function getLuasTanamanPerkebunanBesar($limit, $start, $keyword = null)
+  {
+    if ($keyword) {
+      $this->db->like('kab_kota', $keyword);
+      $this->db->or_like('nama_tanaman', $keyword);
+      $this->db->or_like('tahun', $keyword);
+      $this->db->or_like('jumlah', $keyword);
+    }
+    return $this->db->get('luas_tanaman_perkebunan_besar', $limit, $start)->result_array();
+  }
 }

@@ -8,20 +8,23 @@
 
 <h2 class="text-center text-danger"><?= $detail[0]['kab_kota']; ?></h2>
 <div class="row justify-content-center">
-  <div class="col-md-10">
+  <div class="col-md">
     <canvas id="canvas"></canvas>
   </div>
-  <div class="col-md-2">
-    <div class="btn-group-vertical">
-      <button id="line" class="btn btn-info">Garis</button>
-      <button id="bar" class="btn btn-info">Batang</button>
-      <button id="horizontalBar" class="btn btn-info">Batang Horizontal</button>
-      <button id="pie" class="btn btn-info">Bola</button>
-      <button id="doughnut" class="btn btn-info">Donat</button>
-      <button id="radar" class="btn btn-info">Radar</button>
-      <button id="polarArea" class="btn btn-info">Polar Area</button>
-      <button id="bubble" class="btn btn-info">Bubble</button>
-      <button id="scatter" class="btn btn-info">Scatter</button>
+</div>
+<div class="row mb-3 mt-3">
+  <div class="col-md text-center">
+    <h3>Pilih Grafik untuk menampilkan data : </h3>
+    <div class="btn-group" role="group" aria-label="Basic example">
+      <button id="line" class="btn btn-secondary">Garis</button>
+      <button id="bar" class="btn btn-secondary">Batang</button>
+      <button id="horizontalBar" class="btn btn-secondary">Batang Horizontal</button>
+      <button id="pie" class="btn btn-secondary">Bola</button>
+      <button id="doughnut" class="btn btn-secondary">Donat</button>
+      <button id="radar" class="btn btn-secondary">Radar</button>
+      <button id="poloarArea" class="btn btn-secondary">Polar Area</button>
+      <button id="bubble" class="btn btn-secondary">Bubble</button>
+      <button id="scatter" class="btn btn-secondary">Scatter</button>
     </div>
   </div>
 </div>
@@ -30,44 +33,87 @@
 <script src="<?= base_url('assets/js/chartjs/package/dist/Chart.js'); ?>"></script>
 
 <script>
+  function getNamaTahun(data) {
+    let result = [];
+    for (let i = 0; i < data.length; i++) {
+      result.push(data[i].nama_tanaman + ' - ' + data[i].tahun);
+    }
+    return result;
+  }
+
+  function getJumlah(data) {
+    let result = [];
+    for (let i = 0; i < data.length; i++) {
+      result.push(data[i].jumlah);
+    }
+    return result;
+  }
+
+  function filterNama(data, nama) {
+    const result = data.filter(function(d) {
+      return d.nama_tanaman == nama;
+    });
+    return result;
+  }
+
+  function jsonParse(data) {
+    let result = {};
+    result = JSON.parse(data);
+    return result;
+  }
+
   function chart() {
-    let labelsKaret1 = `<?= $detail[0]['nama_tanaman']; ?> <?= $detail[0]['tahun']; ?>`;
-    let labelsKaret2 = `<?= $detail[1]['nama_tanaman']; ?> <?= $detail[1]['tahun']; ?>`;
-    let labelsKaret3 = `<?= $detail[2]['nama_tanaman']; ?> <?= $detail[2]['tahun']; ?>`;
-    let labelsKaret4 = `<?= $detail[3]['nama_tanaman']; ?> <?= $detail[3]['tahun']; ?>`;
+    let data = '<?php echo json_encode($detail); ?>';
+    data = jsonParse(data);
 
-    let dataKaret1 = `<?= $detail[0]['jumlah']; ?>`;
-    let dataKaret2 = `<?= $detail[1]['jumlah']; ?>`;
-    let dataKaret3 = `<?= $detail[2]['jumlah']; ?>`;
-    let dataKaret4 = `<?= $detail[3]['jumlah']; ?>`;
+    // filter berdasarkan nama tanaman
+    const karet = filterNama(data, 'Karet');
+    const kelapaSawit = filterNama(data, 'Kelapa Sawit');
+    const anekahTanaman = filterNama(data, 'Aneka Tanaman');
 
-    let kelapaSawit1 = `<?= $detail[4]['nama_tanaman']; ?> <?= $detail[4]['tahun']; ?>`;
-    let kelapaSawit2 = `<?= $detail[5]['nama_tanaman']; ?> <?= $detail[5]['tahun']; ?>`;
-    let kelapaSawit3 = `<?= $detail[6]['nama_tanaman']; ?> <?= $detail[6]['tahun']; ?>`;
-    let kelapaSawit4 = `<?= $detail[7]['nama_tanaman']; ?> <?= $detail[7]['tahun']; ?>`;
+    // filter dan menggabungkan nama dan tahun
+    let namaKaret = getNamaTahun(karet);
+    let namaKelapaSawit = getNamaTahun(kelapaSawit);
+    let namaAnekaTanaman = getNamaTahun(anekahTanaman);
 
-    let dataKelapaSawit1 = `<?= $detail[4]['jumlah']; ?>`;
-    let dataKelapaSawit2 = `<?= $detail[5]['jumlah']; ?>`;
-    let dataKelapaSawit3 = `<?= $detail[6]['jumlah']; ?>`;
-    let dataKelapaSawit4 = `<?= $detail[7]['jumlah']; ?>`;
-
-    let anekahTanaman1 = `<?= $detail[8]['nama_tanaman']; ?> <?= $detail[8]['tahun']; ?>`;
-    let anekahTanaman2 = `<?= $detail[9]['nama_tanaman']; ?> <?= $detail[9]['tahun']; ?>`;
-    let anekahTanaman3 = `<?= $detail[10]['nama_tanaman']; ?> <?= $detail[10]['tahun']; ?>`;
-    let anekahTanaman4 = `<?= $detail[11]['nama_tanaman']; ?> <?= $detail[11]['tahun']; ?>`
-
-    let dataAnekahTanaman1 = `<?= $detail[8]['jumlah']; ?>`;
-    let dataAnekahTanaman2 = `<?= $detail[9]['jumlah']; ?>`;
-    let dataAnekahTanaman3 = `<?= $detail[10]['jumlah']; ?>`;
-    let dataAnekahTanaman4 = `<?= $detail[11]['jumlah']; ?>`;
+    // filter jumlah
+    let jumlahKaret = getJumlah(karet);
+    let jumlahSawit = getJumlah(kelapaSawit);
+    let jumlahAneka = getJumlah(anekahTanaman);
 
     var config = {
       type: 'line',
       data: {
-        labels: [labelsKaret1, kelapaSawit1, anekahTanaman1, labelsKaret2, kelapaSawit2, anekahTanaman2, labelsKaret3, kelapaSawit3, anekahTanaman3, labelsKaret4, kelapaSawit4, anekahTanaman4],
+        labels: [
+          namaKaret[0],
+          namaKelapaSawit[0],
+          namaAnekaTanaman[0],
+          namaKaret[1],
+          namaKelapaSawit[1],
+          namaAnekaTanaman[1],
+          namaKaret[2],
+          namaKelapaSawit[2],
+          namaAnekaTanaman[2],
+          namaKaret[3],
+          namaKelapaSawit[3],
+          namaAnekaTanaman[3]
+        ],
         datasets: [{
           label: '<?= $title; ?>',
-          data: [dataKaret1, dataKelapaSawit1, dataAnekahTanaman1, dataKaret2, dataKelapaSawit2, dataAnekahTanaman2, dataKaret3, dataKelapaSawit3, dataAnekahTanaman3, dataKaret4, dataKelapaSawit4, dataAnekahTanaman4],
+          data: [
+            jumlahKaret[0],
+            jumlahSawit[0],
+            jumlahAneka[0],
+            jumlahKaret[1],
+            jumlahSawit[1],
+            jumlahAneka[1],
+            jumlahKaret[2],
+            jumlahSawit[2],
+            jumlahAneka[2],
+            jumlahKaret[3],
+            jumlahSawit[3],
+            jumlahAneka[3]
+          ],
           backgroundColor: [
             'green',
             'yellow',
@@ -153,5 +199,6 @@
     };
   }
 
+  // panggil untuk menjalankan function
   chart();
 </script>

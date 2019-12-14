@@ -8,6 +8,11 @@ class Perkebunan_model extends CI_Model
     return $this->db->get('perkebunan')->result_array();
   }
 
+  public function getDaerah($nid)
+  {
+    return $this->db->get_where('daerah', ['nid' => $nid])->row_array();
+  }
+
   public function getPerkebunanById($id)
   {
     return $this->db->get_where('perkebunan', ['id' => $id])->row_array();
@@ -15,7 +20,7 @@ class Perkebunan_model extends CI_Model
 
   public function getLuasTanamanPerkebunanBesarById($id)
   {
-    return $this->db->get_where('luas_tanaman_perkebunan_besar', ['id_hortikultural' => $id])->result_array();
+    return $this->db->get_where('luas_tanaman_perkebunan_besar', ['id_perkebunan' => $id])->result_array();
   }
 
   public function getLuasTanamanPerkebunanBesar($limit, $start, $keyword = null)

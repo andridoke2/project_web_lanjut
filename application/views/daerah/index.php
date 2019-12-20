@@ -29,40 +29,21 @@
 
 </div>
 
-<table class="table table-hover">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">NID</th>
-      <th scope="col">Parent NID</th>
-      <th scope="col">Name</th>
-      <th scope="col">Serial</th>
-      <th scope="col">Type</th>
-      <th scope="col">Latitude</th>
-      <th scope="col">Longitude</th>
-      <th scope="col">Status</th>
-      <th scope="col">Aksi</th>
-    </tr>
-  </thead>
-  <tbody>
-    <?php foreach ($daerah as $lokasi) : ?>
-      <tr>
-        <th scope="row"><?= ++$start; ?></th>
-        <td><?= $lokasi['nid']; ?></td>
-        <td><?= $lokasi['parent_nid']; ?></td>
-        <td><?= $lokasi['name'] ?></td>
-        <td><?= $lokasi['serial']; ?></td>
-        <td><?= $lokasi['type']; ?></td>
-        <td><?= $lokasi['latitude']; ?></td>
-        <td><?= $lokasi['longitude']; ?></td>
-        <td><?= $lokasi['status']; ?></td>
-        <td>
-          <a href="<?= base_url('daerah/detail/') ?><?= $lokasi['nid']; ?>" class="badge badge-pill badge-info detail-daerah" data-id="<?= $lokasi['nid']; ?>">Detail & Lokasi <i class="fas fa-info"></i></a>
-        </td>
-      </tr>
-    <?php endforeach; ?>
-  </tbody>
-</table>
+<div class="row text-center mt-3">
+  <?php foreach ($daerah as $lokasi) : ?>
+    <!-- Card -->
+    <div class="card ml-3 mb-3" style="width: 16rem;">
+      <img src="<?= base_url('assets/img/kota.jpeg'); ?>" class="card-img-top">
+      <div class="card-body">
+        <h5 class="card-title mb-1 judul-head"><?= $lokasi['name']; ?></h5>
+        <h6>Latitude : <?= $lokasi['latitude']; ?></h6>
+        <h6>Longitude : <?= $lokasi['longitude']; ?></h6>
+        <?= anchor('daerah/detail/' . $lokasi['nid'], '<div class="btn btn-sm btn-success">Detail & Lokasi <i class="fas fa-info"></i></div>') ?>
+      </div>
+    </div>
+    <!-- Akhir Card -->
+  <?php endforeach; ?>
+</div>
 
 <!-- Total Result -->
 <h5>Total Result : <?= $total_rows; ?></h5>

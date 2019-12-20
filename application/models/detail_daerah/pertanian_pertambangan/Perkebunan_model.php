@@ -18,12 +18,12 @@ class Perkebunan_model extends CI_Model
     return $this->db->get_where('perkebunan', ['id' => $id])->row_array();
   }
 
-  public function getLuasTanamanPerkebunanBesarById($id)
+  public function getStatistikSektoralById($id)
   {
-    return $this->db->get_where('luas_tanaman_perkebunan_besar', ['id_perkebunan' => $id])->result_array();
+    return $this->db->get_where('statistik_sektoral', ['id_perkebunan' => $id])->result_array();
   }
 
-  public function getLuasTanamanPerkebunanBesar($limit, $start, $keyword = null)
+  public function getStatistikSektoral($limit, $start, $keyword = null)
   {
     if ($keyword) {
       $this->db->like('kab_kota', $keyword);
@@ -31,14 +31,15 @@ class Perkebunan_model extends CI_Model
       $this->db->or_like('tahun', $keyword);
       $this->db->or_like('jumlah', $keyword);
     }
-    return $this->db->get('luas_tanaman_perkebunan_besar', $limit, $start)->result_array();
+    return $this->db->get('statistik_sektoral', $limit, $start)->result_array();
   }
 
-  public function tambahPerkebunan($judul, $akhirUpdate)
+  public function tambahPerkebunan($judul, $akhirUpdate, $nid_daerah)
   {
     $data = [
       'judul' => $judul,
-      'terakhir_update' => $akhirUpdate
+      'terakhir_update' => $akhirUpdate,
+      'nid_daerah' => $nid_daerah
     ];
     $this->db->insert('perkebunan', $data);
   }

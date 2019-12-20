@@ -27,7 +27,6 @@ class Perkebunan extends CI_Controller
 
     $this->form_validation->set_rules('judul', 'Judul', 'required');
     $this->form_validation->set_rules('akhir_update', 'Terkahir Update', 'required');
-
     if ($this->form_validation->run() == false) {
       $this->load->view('templates/navbar', $data);
       $this->load->view('templates/header');
@@ -36,8 +35,9 @@ class Perkebunan extends CI_Controller
     } else {
       $judul = $this->input->post('judul', true);
       $akhirUpdate = $this->input->post('akhir_update', true);
+      $nid_daerah = 20; // sementara default
 
-      $this->perkebunan->tambahPerkebunan($judul, $akhirUpdate);
+      $this->perkebunan->tambahPerkebunan($judul, $akhirUpdate, $nid_daerah);
       $this->session->set_flashdata('flash', 'Ditambahkan');
       redirect('detail_daerah/pertanian_pertambangan/perkebunan/');
     }
@@ -47,7 +47,8 @@ class Perkebunan extends CI_Controller
   {
     $data['perkebunan'] = $this->perkebunan->getPerkebunanById($id);
     $data['title'] = $data['perkebunan']['judul'];
-    $data['detail'] = $this->perkebunan->getLuasTanamanPerkebunanBesarById($id);
+    $data['detail'] = $this->perkebunan->getStatistikSektoralById($id);
+    $data['id'] = $id;
 
     $this->load->view('templates/navbar', $data);
     $this->load->view('templates/header');
@@ -59,8 +60,6 @@ class Perkebunan extends CI_Controller
   {
     $data['perkebunan'] = $this->perkebunan->getPerkebunanById($id);
     $data['title'] = $data['perkebunan']['judul'];
-
-    // $data['detail'] = $this->perkebunan->getLuasTanamanPerkebunanBesarById($id);
 
     // load library
     $this->load->library('pagination');
@@ -78,7 +77,7 @@ class Perkebunan extends CI_Controller
     $this->db->or_like('nama_tanaman', $data['keyword_table_perkebunan']);
     $this->db->or_like('tahun', $data['keyword_table_perkebunan']);
     $this->db->or_like('jumlah', $data['keyword_table_perkebunan']);
-    $this->db->from('luas_tanaman_perkebunan_besar');
+    $this->db->from('statistik_sektoral');
 
     $config['total_rows'] = $this->db->count_all_results();
     $data['total_rows'] = $config['total_rows'];

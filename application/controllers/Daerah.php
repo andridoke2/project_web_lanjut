@@ -37,7 +37,7 @@ class Daerah extends CI_Controller
     $this->db->from('daerah');
     $config['total_rows'] = $this->db->count_all_results();
     $data['total_rows'] = $config['total_rows'];
-    $config['per_page'] = 10;
+    $config['per_page'] = 12;
     $config['base_url'] = 'http://localhost/sisfo-pemetaan-pemanfaatan-lahan/daerah/index';
 
     // initialize

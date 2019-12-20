@@ -3,10 +3,18 @@
   <a href="<?= base_url('detail_daerah/pertanian_pertambangan/perkebunan/table/') . $detail[0]['id']; ?>" class="btn btn-primary float-right">Versi Tabel <i class="fas fa-table"></i></a>
 </div>
 
+<style>
+  canvas {
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+  }
+</style>
+
 <h2 class="font-weight-bold text-center"><?= $title; ?></h2>
 
 
-<h2 class="text-center text-danger"><?= $detail[0]['kab_kota']; ?></h2>
+<h2 class="text-center text-success"><?= $detail[0]['kab_kota']; ?></h2>
 <div class="row justify-content-center">
   <div class="col-md">
     <canvas id="canvas"></canvas>
@@ -71,70 +79,83 @@
     const kelapaSawit = filterNama(data, 'Kelapa Sawit');
     const anekahTanaman = filterNama(data, 'Aneka Tanaman');
 
+    // console.log(karet);
+    const [id, kab_kota, nama_tanaman, tahun, jumlah, id_perkebunan, nid_daerah_luas] = karet;
+
+
     // filter dan menggabungkan nama dan tahun
     let namaKaret = getNamaTahun(karet);
+    const [namaKaret2015, namaKaret2016, namaKaret2017, namaKaret2018] = namaKaret;
     let namaKelapaSawit = getNamaTahun(kelapaSawit);
+    const [namaSawit2015, namaSawit2016, namaSawit2017, namaSawit2018] = namaKelapaSawit;
     let namaAnekaTanaman = getNamaTahun(anekahTanaman);
+    const [namaAnekah2015, namaAnekah2016, namaAnekah2017, namaAnekah2018] = namaAnekaTanaman;
 
     // filter jumlah
     let jumlahKaret = getJumlah(karet);
+    const [jumlahKaret2015, jumlahKaret2016, jumlahKaret2017, jumlahKaret2018] = jumlahKaret;
     let jumlahSawit = getJumlah(kelapaSawit);
+    const [jumlahSawit2015, jumlahSawit2016, jumlahSawit2017, jumlahSawit2018] = jumlahSawit;
     let jumlahAneka = getJumlah(anekahTanaman);
+    const [jumlahAnekah2015, jumlahAnekah2016, jumlahAnekah2017, jumlahAnekah2018] = jumlahAneka;
+    // console.log(jumlahAnekah2018);
 
     var config = {
       type: 'line',
       data: {
         labels: [
-          namaKaret[0],
-          namaKelapaSawit[0],
-          namaAnekaTanaman[0],
-          namaKaret[1],
-          namaKelapaSawit[1],
-          namaAnekaTanaman[1],
-          namaKaret[2],
-          namaKelapaSawit[2],
-          namaAnekaTanaman[2],
-          namaKaret[3],
-          namaKelapaSawit[3],
-          namaAnekaTanaman[3]
+          '2015',
+          '2016',
+          '2017',
+          '2018'
         ],
         datasets: [{
-          label: '<?= $title; ?>',
+          label: 'Karet',
           data: [
-            jumlahKaret[0],
-            jumlahSawit[0],
-            jumlahAneka[0],
-            jumlahKaret[1],
-            jumlahSawit[1],
-            jumlahAneka[1],
-            jumlahKaret[2],
-            jumlahSawit[2],
-            jumlahAneka[2],
-            jumlahKaret[3],
-            jumlahSawit[3],
-            jumlahAneka[3]
+            jumlahKaret2015, jumlahKaret2016, jumlahKaret2017, jumlahKaret2018
           ],
           backgroundColor: [
             'green',
-            'yellow',
-            'red',
             'green',
-            'yellow',
-            'red',
             'green',
+            'green'
+          ],
+          borderColor: [
+            'rgba(255, 99, 132, 1)'
+          ],
+          borderWidth: 1,
+          hoverBorderColor: '#000',
+          hoverBorderWidth: 3
+        }, {
+          label: 'Sawit',
+          data: [
+            jumlahSawit2015, jumlahSawit2016, jumlahSawit2017, jumlahSawit2018
+          ],
+          backgroundColor: [
             'yellow',
+            'yellow',
+            'yellow',
+            'yellow'
+          ],
+          borderColor: [
+            'rgba(255, 99, 132, 1)'
+          ],
+          borderWidth: 1,
+          hoverBorderColor: '#000',
+          hoverBorderWidth: 3
+        }, {
+          label: 'Anekah Tanaman',
+          data: [
+            jumlahAnekah2015, jumlahAnekah2016, jumlahAnekah2017, jumlahAnekah2018
+          ],
+          backgroundColor: [
             'red',
-            'green',
-            'yellow',
+            'red',
+            'red',
             'red'
           ],
           borderColor: [
-            'rgba(255, 99, 132, 1)',
-            'rgba(54, 162, 235, 1)',
-            'rgba(255, 206, 86, 1)',
-            'rgba(75, 192, 192, 1)',
-            'rgba(153, 102, 255, 1)',
-            'rgba(255, 159, 64, 1)'
+            'rgba(255, 99, 132, 1)'
           ],
           borderWidth: 1,
           hoverBorderColor: '#000',

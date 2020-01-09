@@ -24,15 +24,8 @@
   <div class="col-md text-center">
     <h3>Klik disini jika grafik tidak tampil : </h3>
     <div class="btn-group" role="group" aria-label="Basic example">
-      <!-- <button id="line" class="btn btn-secondary">Garis</button> -->
-      <button id="bar" class="btn btn-secondary">Tampilkan Grafik</button>
-      <!-- <button id="horizontalBar" class="btn btn-secondary">Batang Horizontal</button>
-      <button id="pie" class="btn btn-secondary">Bola</button>
-      <button id="doughnut" class="btn btn-secondary">Donat</button>
-      <button id="radar" class="btn btn-secondary">Radar</button>
-      <button id="poloarArea" class="btn btn-secondary">Polar Area</button>
-      <button id="bubble" class="btn btn-secondary">Bubble</button>
-      <button id="scatter" class="btn btn-secondary">Scatter</button> -->
+      <button id="line" class="btn btn-secondary">Tampilkan Grafik</button>
+      <!-- <button id="bar" class="btn btn-secondary">Tampilkan Grafik</button> -->
     </div>
   </div>
 </div>
@@ -94,36 +87,24 @@
 
     // filter berdasarkan nama tanaman
     const karet = filterNama(data, 'Karet');
-    const kelapaSawit = filterNama(data, 'Kelapa Sawit');
-    const anekahTanaman = filterNama(data, 'Aneka Tanaman');
 
     // filter berdasarkan tahun
-    const tahunData = getTahun(data);
-    const pecahTahun2015 = filterTahun(tahunData, '2015');
-    const pecahTahun2016 = filterTahun(tahunData, '2016');
-    const pecahTahun2017 = filterTahun(tahunData, '2017');
-    const pecahTahun2018 = filterTahun(tahunData, '2018');
-    // console.log(pecahTahun2018);
+    const tahunKaret = getTahun(karet);
+    const pecahTahun2015 = filterTahun(tahunKaret, '2015');
+    const pecahTahun2016 = filterTahun(tahunKaret, '2016');
+    const pecahTahun2017 = filterTahun(tahunKaret, '2017');
+    const pecahTahun2018 = filterTahun(tahunKaret, '2018');
+    // console.log(pecahTahun2018[0]);
 
-    // console.log(karet);
     const [id, kab_kota, nama_tanaman, tahun, jumlah, id_perkebunan, nid_daerah_luas] = karet;
 
     // filter dan menggabungkan nama dan tahun
     let namaKaret = getNamaTahun(karet);
     const [namaKaret2015, namaKaret2016, namaKaret2017, namaKaret2018] = namaKaret;
-    let namaKelapaSawit = getNamaTahun(kelapaSawit);
-    const [namaSawit2015, namaSawit2016, namaSawit2017, namaSawit2018] = namaKelapaSawit;
-    let namaAnekaTanaman = getNamaTahun(anekahTanaman);
-    const [namaAnekah2015, namaAnekah2016, namaAnekah2017, namaAnekah2018] = namaAnekaTanaman;
 
     // filter jumlah
     let jumlahKaret = getJumlah(karet);
     const [jumlahKaret2015, jumlahKaret2016, jumlahKaret2017, jumlahKaret2018] = jumlahKaret;
-    let jumlahSawit = getJumlah(kelapaSawit);
-    const [jumlahSawit2015, jumlahSawit2016, jumlahSawit2017, jumlahSawit2018] = jumlahSawit;
-    let jumlahAneka = getJumlah(anekahTanaman);
-    const [jumlahAnekah2015, jumlahAnekah2016, jumlahAnekah2017, jumlahAnekah2018] = jumlahAneka;
-    // console.log(jumlahAnekah2018);
 
     var config = {
       type: 'line',
@@ -144,40 +125,6 @@
             'green',
             'green',
             'green'
-          ],
-          borderColor: [
-            'rgba(255, 99, 132, 1)'
-          ],
-          borderWidth: 1,
-          hoverBorderColor: '#000',
-          hoverBorderWidth: 3
-        }, {
-          label: 'Sawit',
-          data: [
-            jumlahSawit2015, jumlahSawit2016, jumlahSawit2017, jumlahSawit2018
-          ],
-          backgroundColor: [
-            'yellow',
-            'yellow',
-            'yellow',
-            'yellow'
-          ],
-          borderColor: [
-            'rgba(255, 99, 132, 1)'
-          ],
-          borderWidth: 1,
-          hoverBorderColor: '#000',
-          hoverBorderWidth: 3
-        }, {
-          label: 'Anekah Tanaman',
-          data: [
-            jumlahAnekah2015, jumlahAnekah2016, jumlahAnekah2017, jumlahAnekah2018
-          ],
-          backgroundColor: [
-            'red',
-            'red',
-            'red',
-            'red'
           ],
           borderColor: [
             'rgba(255, 99, 132, 1)'

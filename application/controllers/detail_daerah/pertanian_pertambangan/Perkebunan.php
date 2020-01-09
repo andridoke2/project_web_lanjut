@@ -52,7 +52,11 @@ class Perkebunan extends CI_Controller
 
     $this->load->view('templates/navbar', $data);
     $this->load->view('templates/header');
-    $this->load->view('pertanian_pertambangan/perkebunan/detail', $data);
+    if ($data['id'] == 1) {
+      $this->load->view('pertanian_pertambangan/perkebunan/detail', $data);
+    } else {
+      $this->load->view('pertanian_pertambangan/perkebunan/detail_karet', $data);
+    }
     $this->load->view('templates/footer');
   }
 

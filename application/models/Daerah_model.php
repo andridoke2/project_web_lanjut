@@ -58,7 +58,8 @@ class Daerah_model extends CI_Model
       'type' => $type,
       'latitude' => $lat,
       'longitude' => $lng,
-      'status' => $status
+      'status' => $status,
+      'image' => 'default.png'
     ];
 
     $this->db->insert('daerah', $data);

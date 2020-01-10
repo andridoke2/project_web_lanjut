@@ -82,6 +82,14 @@
     return result;
   }
 
+  function getNamaLabel(data, nama) {
+    let result = [];
+    for (let i = 0; i < data.length; i++) {
+      result.push(data[i].nama_tanaman);
+    }
+    return result;
+  }
+
   function jsonParse(data) {
     let result = {};
     result = JSON.parse(data);
@@ -94,8 +102,14 @@
 
     // filter berdasarkan nama tanaman
     const karet = filterNama(data, 'Karet');
+    const labelKaret = getNamaLabel(karet, 'Karet');
+
     const kelapaSawit = filterNama(data, 'Kelapa Sawit');
+    const labelSawit = getNamaLabel(kelapaSawit, 'Kelapa Sawit');
+
     const anekahTanaman = filterNama(data, 'Aneka Tanaman');
+    const labelAnekah = getNamaLabel(anekahTanaman, 'Anekah Tanaman');
+    // console.log(labelAnekah);
 
     // filter berdasarkan tahun
     const tahunData = getTahun(data);
@@ -135,7 +149,7 @@
           pecahTahun2018[0]
         ],
         datasets: [{
-          label: 'Karet',
+          label: labelKaret[0],
           data: [
             jumlahKaret2015, jumlahKaret2016, jumlahKaret2017, jumlahKaret2018
           ],
@@ -152,7 +166,7 @@
           hoverBorderColor: '#000',
           hoverBorderWidth: 3
         }, {
-          label: 'Sawit',
+          label: labelSawit[0],
           data: [
             jumlahSawit2015, jumlahSawit2016, jumlahSawit2017, jumlahSawit2018
           ],
@@ -169,7 +183,7 @@
           hoverBorderColor: '#000',
           hoverBorderWidth: 3
         }, {
-          label: 'Anekah Tanaman',
+          label: labelAnekah[0],
           data: [
             jumlahAnekah2015, jumlahAnekah2016, jumlahAnekah2017, jumlahAnekah2018
           ],

@@ -33,7 +33,7 @@
   <?php foreach ($daerah as $lokasi) : ?>
     <!-- Card -->
     <div class="card ml-3 mb-3" style="width: 16rem;">
-      <img src="<?= base_url('assets/img/kota.jpeg'); ?>" class="card-img-top">
+      <img src="<?= base_url('assets/img/daerah/') . $lokasi['image']; ?>" class="card-img-top">
       <div class="card-body">
         <h5 class="card-title mb-1 judul-head"><?= $lokasi['name']; ?></h5>
         <h6>Latitude : <?= $lokasi['latitude']; ?></h6>

@@ -39,27 +39,18 @@ class Daerah_model extends CI_Model
     return $this->db->get('sub_menu_detail')->result_array();
   }
 
-  public function tambah($nid, $parentNID, $name, $serial, $type, $lat, $lng, $status)
+  public function tambah($nid, $parentNID, $name, $serial, $type, $lat, $lng, $status, $image)
   {
-    $nid = trim($nid);
-    $parentNID = trim($parentNID);
-    $name = trim($name);
-    $serial = trim($serial);
-    $type = trim($type);
-    $lat = trim($lat);
-    $lng = trim($lng);
-    $status = trim($status);
-
     $data = [
-      'nid' => $nid,
-      'parent_nid' => $parentNID,
-      'name' => $name,
-      'serial' => $serial,
-      'type' => $type,
-      'latitude' => $lat,
-      'longitude' => $lng,
-      'status' => $status,
-      'image' => 'default.png'
+      'nid' => htmlspecialchars(trim($nid)),
+      'parent_nid' => htmlspecialchars(trim($parentNID)),
+      'name' => htmlspecialchars(trim($name)),
+      'serial' => htmlspecialchars(trim($serial)),
+      'type' => htmlspecialchars(trim($type)),
+      'latitude' => htmlspecialchars(trim($lat)),
+      'longitude' => htmlspecialchars(trim($lng)),
+      'status' => htmlspecialchars(trim($status)),
+      'image' => $image
     ];
 
     $this->db->insert('daerah', $data);
@@ -67,27 +58,18 @@ class Daerah_model extends CI_Model
 
   public function ubah()
   {
-    $nid = trim($this->input->post('nid', true));
-    $parentNID = trim($this->input->post('parentNID', true));
-    $name = trim($this->input->post('name', true));
-    $serial = trim($this->input->post('serial', true));
-    $type = trim($this->input->post('type', true));
-    $lat = trim($this->input->post('lat', true));
-    $lng = trim($this->input->post('lng', true));
-    $status = trim($this->input->post('status', true));
-
     $data = [
-      'nid' => $nid,
-      'parent_nid' => $parentNID,
-      'name' => $name,
-      'serial' => $serial,
-      'type' => $type,
-      'latitude' => $lat,
-      'longitude' => $lng,
-      'status' => $status
+      'nid' => htmlspecialchars(trim($this->input->post('nid', true))),
+      'parent_nid' => htmlspecialchars(trim($this->input->post('parentNID', true))),
+      'name' => htmlspecialchars(trim($this->input->post('name', true))),
+      'serial' => htmlspecialchars(trim($this->input->post('serial', true))),
+      'type' => htmlspecialchars(trim($this->input->post('type', true))),
+      'latitude' => htmlspecialchars(trim($this->input->post('lat', true))),
+      'longitude' => htmlspecialchars(trim($this->input->post('lng', true))),
+      'status' => htmlspecialchars(trim($this->input->post('status', true)))
     ];
 
-    $this->db->where('nid', $nid);
+    $this->db->where('nid', $data['nid']);
     $this->db->update('daerah', $data);
   }
 

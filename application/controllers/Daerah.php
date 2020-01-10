@@ -84,7 +84,36 @@ class Daerah extends CI_Controller
       $lng       = $this->input->post('lng', true);
       $status    = $this->input->post('status', true);
 
-      $this->Daerah_model->tambah($nid, $parentNID, $name, $serial, $type, $lat, $lng, $status);
+      // cek jika ada gambar yang diupload
+      $upload_image = $_FILES['image']['name'];
+
+      if ($upload_image) {
+        $config['allowed_types'] = 'gif|jpg|png|jpeg';
+        $config['max_size'] = '2048';
+        $config['upload_path'] = './assets/img/daerah';
+
+        $this->load->library('upload', $config);
+
+        if ($this->upload->do_upload('image')) {
+          $image = $this->upload->data('file_name');
+        } else {
+          echo $this->upload->display_errors();
+        }
+      } else {
+        $image = 'default.png';
+      }
+
+      $this->Daerah_model->tambah(
+        $nid,
+        $parentNID,
+        $name,
+        $serial,
+        $type,
+        $lat,
+        $lng,
+        $status,
+        $image
+      );
       $this->session->set_flashdata('flash', 'Ditambahkan');
       redirect('daerah');
     }

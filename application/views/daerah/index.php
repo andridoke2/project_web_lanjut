@@ -36,8 +36,8 @@
       <img src="<?= base_url('assets/img/daerah/') . $lokasi['image']; ?>" class="card-img-top">
       <div class="card-body">
         <h5 class="card-title mb-1 judul-head"><?= $lokasi['name']; ?></h5>
-        <h6>Latitude : <?= $lokasi['latitude']; ?></h6>
-        <h6>Longitude : <?= $lokasi['longitude']; ?></h6>
+        <h6 class="text-danger">Latitude : <?= $lokasi['latitude']; ?></h6>
+        <h6 class="text-danger">Longitude : <?= $lokasi['longitude']; ?></h6>
         <?= anchor('daerah/detail/' . $lokasi['nid'], '<div class="btn btn-sm btn-success">Detail & Lokasi <i class="fas fa-info"></i></div>') ?>
       </div>
     </div>

@@ -1,4 +1,4 @@
-<h2>Daftar <?= $title; ?></h2>
+<h2 class="panel-title"><strong>Daftar <?= $title; ?></strong></h2>
 
 <div class="flash-data-perkebunan" data-flashdata="<?= $this->session->flashdata('flash'); ?>"></div>
 

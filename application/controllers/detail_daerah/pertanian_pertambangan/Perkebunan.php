@@ -43,6 +43,36 @@ class Perkebunan extends CI_Controller
     }
   }
 
+  /**
+   * filter data berdasarkan nama dari tanaman
+   * 
+   * NOTE : harusnya dimasukan kedalam helper kita sendiri.
+   */
+  private function filterNamaTanaman($data, $nama, $index)
+  {
+    $result = [];
+    for ($i = 0; $i < sizeof($data); $i++) {
+      if ($data[$i][$index] == $nama) {
+        $result[] = $data[$i][$index];
+      }
+    }
+    return $result;
+  }
+
+  /**
+   * cek apakah yang dimasukan divariabel $nama1, $nama2 dan $nama3
+   * terdapat didalam array yang dimasukan ke variabel $data
+   * 
+   * NOTE : harusnya dimasukan kedalam helper kita sendiri
+   */
+  private function cekNamaTanaman($data, $nama1, $nama2, $nama3)
+  {
+    for ($i = 0; $i < sizeof($data); $i++) {
+      if (in_array($nama1, $data) && in_array($nama2, $data) && in_array($nama3, $data)) return true;
+    }
+    return false;
+  }
+
   public function detail($id)
   {
     $data['perkebunan'] = $this->perkebunan->getPerkebunanById($id);
@@ -50,12 +80,23 @@ class Perkebunan extends CI_Controller
     $data['detail'] = $this->perkebunan->getStatistikSektoralById($id);
     $data['id'] = $id;
 
+    $index = 'nama_tanaman';
+    $nama_tanaman = $this->filterNamaTanaman($data['detail'], 'Anekah Tanaman', $index);
+    $nama_tanaman = array_merge(
+      $nama_tanaman,
+      $this->filterNamaTanaman($data['detail'], 'Karet', $index)
+    );
+    $nama_tanaman = array_merge(
+      $nama_tanaman,
+      $this->filterNamaTanaman($data['detail'], 'Kelapa Sawit', $index)
+    );
+
     $this->load->view('templates/navbar', $data);
     $this->load->view('templates/header');
-    if ($data['id'] == 1) {
-      $this->load->view('pertanian_pertambangan/perkebunan/detail', $data);
+    if ($this->cekNamaTanaman($nama_tanaman, 'Karet', 'Kelapa Sawit', 'Anekah Tanaman')) {
+      $this->load->view('pertanian_pertambangan/perkebunan/detail_multi', $data); // untuk beberapa tanaman
     } else {
-      $this->load->view('pertanian_pertambangan/perkebunan/detail_karet', $data);
+      $this->load->view('pertanian_pertambangan/perkebunan/detail_single', $data); // untuk satu jenis tanaman
     }
     $this->load->view('templates/footer');
   }

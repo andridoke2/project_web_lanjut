@@ -107,7 +107,7 @@
     const kelapaSawit = filterNama(data, 'Kelapa Sawit');
     const labelSawit = getNamaLabel(kelapaSawit, 'Kelapa Sawit');
 
-    const anekahTanaman = filterNama(data, 'Aneka Tanaman');
+    const anekahTanaman = filterNama(data, 'Anekah Tanaman');
     const labelAnekah = getNamaLabel(anekahTanaman, 'Anekah Tanaman');
     // console.log(labelAnekah);
 

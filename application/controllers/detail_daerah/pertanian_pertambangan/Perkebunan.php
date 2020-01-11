@@ -80,20 +80,21 @@ class Perkebunan extends CI_Controller
     $data['detail'] = $this->perkebunan->getStatistikSektoralById($id);
     $data['id'] = $id;
 
-    $index = 'nama_tanaman';
-    $nama_tanaman = $this->filterNamaTanaman($data['detail'], 'Anekah Tanaman', $index);
+    $index = 'nama_tanaman'; // untuk menentukan index dari kolom yang akan difilter pada table.
+
+    $nama_tanaman = filterNamaTanaman($data['detail'], 'Anekah Tanaman', $index);
     $nama_tanaman = array_merge(
       $nama_tanaman,
-      $this->filterNamaTanaman($data['detail'], 'Karet', $index)
+      filterNamaTanaman($data['detail'], 'Karet', $index)
     );
     $nama_tanaman = array_merge(
       $nama_tanaman,
-      $this->filterNamaTanaman($data['detail'], 'Kelapa Sawit', $index)
+      filterNamaTanaman($data['detail'], 'Kelapa Sawit', $index)
     );
 
     $this->load->view('templates/navbar', $data);
     $this->load->view('templates/header');
-    if ($this->cekNamaTanaman($nama_tanaman, 'Karet', 'Kelapa Sawit', 'Anekah Tanaman')) {
+    if (cekNamaTanaman($nama_tanaman, 'Karet', 'Kelapa Sawit', 'Anekah Tanaman')) {
       $this->load->view('pertanian_pertambangan/perkebunan/detail_multi', $data); // untuk beberapa tanaman
     } else {
       $this->load->view('pertanian_pertambangan/perkebunan/detail_single', $data); // untuk satu jenis tanaman

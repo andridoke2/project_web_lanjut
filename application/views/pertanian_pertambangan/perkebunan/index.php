@@ -12,17 +12,17 @@
   </div>
 
   <!-- Cari -->
-  <div class="col-md float-right mb-2">
+  <div class="col-md-4 float-right mb-2">
     <form action="<?= base_url('pertanian_pertambangan/perkebunan'); ?>" method="post">
       <div class="input-group">
         <input type="text" class="form-control" placeholder="Cari data perkbunan..." name="keyword_perkebunan" autocomplete="off">
         <div class="input-group-append">
-          <button class="btn btn-outline-primary" type="submit" name="submit_perkebunan">Cari
+          <button class="btn btn-outline-primary" type="submit" name="submit_perkebunan">
             <i class="fas fa-search"></i>
           </button>
         </div>
         <div class="input-group-append">
-          <a class="btn btn-info" href="<?= base_url('pertanian_pertambangan/unsetDataCariPerkebunan') ?>" class="badge badge-info">Reset <i class="fas fa-redo fa-sm"></i></a>
+          <a class="btn btn-outline-info" href="<?= base_url('pertanian_pertambangan/unsetDataCariPerkebunan') ?>" class="badge badge-info"><i class="fas fa-redo fa-sm"></i></a>
         </div>
       </div>
     </form>
@@ -37,6 +37,7 @@
       <th scope="col">#</th>
       <th scope="col">Judul</th>
       <th scope="col">Terakhir Update</th>
+      <th scope="col">Detail</th>
     </tr>
   </thead>
   <tbody>
@@ -45,8 +46,11 @@
     foreach ($perkebunan as $p) : ?>
       <tr>
         <th scope="row"><?= ++$i; ?></th>
-        <td><a href="<?= base_url('detail_daerah/pertanian_pertambangan/perkebunan/detail/') . $p['id']; ?>"><?= $p['judul']; ?></a></td>
+        <td><?= $p['judul']; ?></td>
         <td><?= $p['terakhir_update']; ?></td>
+        <td>
+          <a class="btn btn-primary" href="<?= base_url('detail_daerah/pertanian_pertambangan/perkebunan/detail/') . $p['id']; ?>"><i class="fas fa-search-plush fa-lg"></i></a>
+        </td>
       </tr>
     <?php endforeach; ?>
   </tbody>

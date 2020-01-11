@@ -10,17 +10,17 @@
   </div>
 
   <!-- Cari -->
-  <div class="col-md float-right mb-2">
+  <div class="col-md-5 float-right mb-2">
     <form action="<?= base_url('daerah'); ?>" method="post">
       <div class="input-group">
         <input type="text" class="form-control" placeholder="Cari data daerah..." name="keyword_daerah" autocomplete="off">
         <div class="input-group-append">
-          <button class="btn btn-outline-primary" type="submit" name="submit_daerah">Cari
+          <button class="btn btn-outline-primary" type="submit" name="submit_daerah">
             <i class="fas fa-search"></i>
           </button>
         </div>
         <div class="input-group-append">
-          <a class="btn btn-info" href="<?= base_url('daerah/unsetDataCariDaerah') ?>" class="badge badge-info">Reset<i class="fas fa-redo fa-sm"></i></a>
+          <a class="btn btn-outline-info" href="<?= base_url('daerah/unsetDataCariDaerah') ?>" class="badge badge-info"><i class="fas fa-redo fa-sm"></i></a>
         </div>
       </div>
     </form>

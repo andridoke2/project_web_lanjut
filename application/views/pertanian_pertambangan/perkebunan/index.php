@@ -47,7 +47,7 @@
       <tr>
         <th scope="row"><?= ++$i; ?></th>
         <td><?= $p['judul']; ?></td>
-        <td><?= $p['terakhir_update']; ?></td>
+        <td><?= reverseTanggal($p['terakhir_update']); ?></td>
         <td>
           <a class="btn btn-primary" href="<?= base_url('detail_daerah/pertanian_pertambangan/perkebunan/detail/') . $p['id']; ?>"><i class="fas fa-search-plush fa-lg"></i></a>
         </td>

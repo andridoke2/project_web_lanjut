@@ -25,3 +25,10 @@ function cekNamaTanaman($data, $nama1, $nama2, $nama3)
   }
   return false;
 }
+
+function reverseTanggal($tanggal)
+{
+  $result = explode('-', $tanggal);
+  $result = $result[2] . '-' . $result[1] . '-' . $result[0];
+  return $result;
+}

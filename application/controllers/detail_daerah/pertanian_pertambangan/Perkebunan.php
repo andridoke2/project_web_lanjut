@@ -80,7 +80,7 @@ class Perkebunan extends CI_Controller
     $data['detail'] = $this->perkebunan->getStatistikSektoralById($id);
     $data['id'] = $id;
 
-    $index = 'nama_tanaman'; // untuk menentukan index dari kolom yang akan difilter pada table.
+    $index = 'nama_tanaman'; // untuk menentukan index dari kolom yang akan difillter pada table.
 
     $nama_tanaman = filterNamaTanaman($data['detail'], 'Anekah Tanaman', $index);
     $nama_tanaman = array_merge(

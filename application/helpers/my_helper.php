@@ -26,6 +26,12 @@ function cekNamaTanaman($data, $nama1, $nama2, $nama3)
   return false;
 }
 
+/**
+ * membalikan format tanggal
+ * format tanggal default bawaan mysql adalah yyyy-MM-dd
+ * dengan function ini mengubah menjadi dd-MM-yyyy
+ * sesuai dengan cara baca tanggal indonesia.
+ */
 function reverseTanggal($tanggal)
 {
   $result = explode('-', $tanggal);
